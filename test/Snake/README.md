@@ -16,6 +16,7 @@
     - One way Direction 
 - Horizontal / vertical size
     -  Vehicle Size : 20 * 10 // 40 * 20
+    -  10 인 쪽이 움직이는데 fount side/ rear side 구분 필요  
     
 **Machine**
     - 동시에 쉬어가는 시간(실제 작동시간)을 설치 
