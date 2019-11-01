@@ -1,4 +1,4 @@
-#import
+# import
 import pygame 
 import time
 
@@ -7,7 +7,7 @@ Screen_Width  = 1000  # 창 너비
 Screen_Height = 700   # 창 높이
 
 # 사용전 게임 초기화 
-# pygame.init() 
+pygame.init()
 
 # 게임창을 연다. ->  게임 창의 너비와 높이를 담은 튜플을 전달 
 # 1000*700 픽셀을 가진 Screen
