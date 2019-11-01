@@ -1,6 +1,8 @@
 # import
 import pygame 
 import time
+from datetime import datetime
+from datetime import timezone
 
 # 사용전 게임 초기화
 pygame.init()
@@ -54,6 +56,7 @@ rect = pygame.Rect((0, 0), (40, 40))
 pygame.draw.rect(screen, GREEN, rect)
 
 block_position = [0, 0]  # 블록의 위치 (y, x) 튜플이어야 함
+last_moved_time = datetime.now()  # 마지막으로 움직인 때
 Run = True
 
 while Run:
@@ -62,15 +65,9 @@ while Run:
         if event.type == pygame.QUIT:
             exit()
 
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP:  # 입력된 키가 위쪽 화살표 키인 경우
-                block_position[0] -= vel  # 블록의 y 좌표를 1 뺀다
-            elif event.key == pygame.K_DOWN  :  # 입력된 키가 아래쪽 화살표 키인 경우
-                block_position[0] += vel  # 블록의 y 좌표를 1 더한다
-            elif event.key == pygame.K_LEFT:  # 입력된 키가 왼쪽 화살표 키인 경우
-                block_position[1] -= vel  # 블록의 x 좌표를 1 뺀다
-            elif event.key == pygame.K_RIGHT:  # 입력된 키가 왼쪽 화살표 키인 경우
-                block_position[1] += vel
+    if timedelta(seconds=1) <= datetime.now()- last_moved_time: # 블록이 움직이고 1초가 지났으면
+        block_position[1] += vel   # 블록이 오른족으로 움직인다.
+        last_moved_time = datetime.now() # 블록을 움직인 시각을 지금으로 갱신한다.
 
     # 화면을 계속 새로 그린다
     draw_background(screen)

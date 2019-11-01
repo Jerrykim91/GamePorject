@@ -6,8 +6,8 @@ import pygame
 pygame.init()
 
 # 변수
-x, y = (10, 10) # ? 블락 포지션 값인가 ?
-width, height = (20, 30) # 블록 사이즈 인가??
+x, y = (10, 10) # 좌표값
+width, height = (10, 20) # 블록 사이즈 인가??
 vel = 5
 Screen_Width  = 1000  # 창 너비
 Screen_Height = 700  # 창 높이
