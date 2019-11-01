@@ -1,7 +1,6 @@
 # import
-import pygame 
-import time
-from datetime import datetime
+import pygame
+from datetime import datetime, timedelta
 from datetime import timezone
 
 # 사용전 게임 초기화
@@ -55,7 +54,7 @@ pygame.draw.rect(screen, RED, rect)
 rect = pygame.Rect((0, 0), (40, 40))
 pygame.draw.rect(screen, GREEN, rect)
 
-block_position = [0, 0]  # 블록의 위치 (y, x) 튜플이어야 함
+block_position = [0, 0]  #  좌표값  (y, x) 튜플이어야 함
 last_moved_time = datetime.now()  # 마지막으로 움직인 때
 Run = True
 

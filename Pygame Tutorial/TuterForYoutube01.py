@@ -1,3 +1,4 @@
+# 유튜브 참조
 # import
 import pygame
 # init => 초기화 

@@ -53,7 +53,8 @@ pygame.draw.rect(screen, RED, rect)
 rect = pygame.Rect((0, 0), (40, 40))
 pygame.draw.rect(screen, GREEN, rect)
 
-block_position = [0, 0]  # 블록의 위치 (y, x) 튜플이어야 함
+block_position = [0, 0]  # 좌표값  (y, x) 튜플이어야 함
+
 Run = True
 
 while Run:

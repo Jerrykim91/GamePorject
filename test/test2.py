@@ -28,6 +28,7 @@ WHITE  = 255, 255, 255   # 하얀색: 적 255, 녹 255, 청 255
 # 윈도우 생성
 Win = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 FPSCLOCK = pygame.time.Clock()
+
 # 타이틀
 pygame.display.set_caption("Test Project")
 
@@ -76,10 +77,7 @@ while Run:
     pygame.draw.rect(Win, RED, (x, y, width, height),2)
     # 화면 갱신
     pygame.display.update()
-    FPSCLOCK.tick(10)
+    FPSCLOCK.tick(5)
 
 if __name__=='__main__':
     main()
-# 블랙 -> 화이트 화면 색 변경하고 속도 조절
-# win 사이즈 변경 -> 절반으로 대폭 수정
-# 전체적으로 기본 내용을 함수 안에 삽입
