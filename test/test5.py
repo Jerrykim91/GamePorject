@@ -49,8 +49,8 @@ def main():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
-
         Win.fill(WHITE)  # 흰색으로 화면을 채운다.
+        
         # 그리기
         with open(Path,'r', newline='') as lines: #, newline=''
                 # print(FIELDS)

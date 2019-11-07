@@ -65,7 +65,7 @@ def redrawGameWindow():
     # pygame.draw.rect(Win, RED, rect)
     pygame.display.update()# 화면 갱신
 
-# 메인 루프 
+# 메인 루프 -------
 Run = True
 
 while Run:
