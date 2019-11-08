@@ -32,7 +32,7 @@
 
 - Horizontal / vertical size
     - 1000 * 700으로 설정 ( 원본 )
-    - 500 * 350 ( 사본 ) 
+    - 600 * 500 ( 사본 ) 
 - Vehicle Location
 - Machine Location
     - fixed  

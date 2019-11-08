@@ -75,7 +75,7 @@ while Run:
     # (win,(R,G,B),(x, y, width, height))
     pygame.draw.rect(Win, RED, (x, y, width, height),2)
     # 화면 갱신
-    pygame.display.update()
+    pygame.display.flip()
     FPSCLOCK.tick(10)
 
 if __name__=='__main__':
