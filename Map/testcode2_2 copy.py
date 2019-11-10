@@ -19,16 +19,8 @@ Win = pygame.display.set_mode(WINDOW_SIZE)
 pygame.display.set_caption("Array Backed")
 clock = pygame.time.Clock()
 #-----
-# grid = []
-# for row in range(600):
-#     #각 셀을 보유 할 빈 배열을 추가하십시오.
-#     grid.append([])
-#     for column in range(500):
-#         grid[row].append(0)  
- 
-# # grid[1][5] = 1
 
-data = pd.read_csv('./data/site1.csv')
+data = pd.read_csv('./data/site3.csv')
 
 Win.fill(WHITE)
 
@@ -37,15 +29,19 @@ for i in range(data.shape[0]): # 500 = i = row
         if data.iloc[i, j] == 1:
             Color = BLACK
             pygame.draw.rect(Win, Color, (int(data.columns[j]), int(data.index[i]), 1, 1))
-        elif data.iloc[i, j] == 3:
+        elif data.iloc[i, j] == 4:
             Color = GREEN
             pygame.draw.rect(Win, Color, (int(data.columns[j]), int(data.index[i]), 1, 1))
-        elif data.iloc[i, j] == 4:
+        elif data.iloc[i, j] == 5:
             Color = RED
             pygame.draw.rect(Win, Color, (int(data.columns[j]), int(data.index[i]), 1, 1))
         else:
             Color = WHITE
             pygame.draw.rect(Win, Color, (int(data.columns[j]), int(data.index[i]), 1, 1))
+# unload : 0  , load = 1 , caner = 2 , turn = 3
+# home_ in : 4  , home_out : 5 , home point = 9
+# M_in : 6  , M _out : 7
+# check point1 = 8
 
 done = False
 # -------- 메인 프로그램 루프 -----------

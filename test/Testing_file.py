@@ -39,26 +39,18 @@ for row in range(data.shape[0]):
     for col in range(data.shape[1]):
         print(data[row][col])
 
-        # data = df.iloc[row, col]
-        # if data == 1 :
-        #     Color = BLACK
-        #     pygame.draw.rect(Win, Color, (int(data.columns[col]), int(data.index[row]), 1, 1))
-        # print(int(data.columns[col]))
-        # col =
-        # row =
 
-
-def W_display(): # 화면 갱신
-    pygame.display.update()
-    FPSCLOCK.tick(5)
-
-def main(): # 메인함수
-    while True:
-        EVENTS = pygame.event.get()
-        for event in EVENTS:
-            if event.type == QUIT:
-                pygame.quit()
-                sys.exit()
+# def W_display(): # 화면 갱신
+#     pygame.display.update()
+#     FPSCLOCK.tick(5)
+#
+# def main(): # 메인함수
+#     while True:
+#         EVENTS = pygame.event.get()
+#         for event in EVENTS:
+#             if event.type == QUIT:
+#                 pygame.quit()
+#                 sys.exit()
 
 
 

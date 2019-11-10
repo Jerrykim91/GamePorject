@@ -42,17 +42,17 @@ def draw_block(screen, color, position):
     # 블록 크기 고정 ( BLOCK_SIZE, BLOCK_SIZE )
     pygame.draw.rect(screen, color, block)
 
-# 전체 화면에서 흰 사각형을 그린다. 
-rect = pygame.Rect((0, 0), (SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.draw.rect(screen, WHITE, rect)
-
-# 전체 화면에서 빨간 사각형을 그린다. 
-rect = pygame.Rect((340, 60), (60, 20))
-pygame.draw.rect(screen, RED, rect)
-
-# 전체 화면에서 녹색 사각형을 그린다. 
-rect = pygame.Rect((0, 0), (40, 40))
-pygame.draw.rect(screen, GREEN, rect)
+# # 전체 화면에서 흰 사각형을 그린다.
+# rect = pygame.Rect((0, 0), (SCREEN_WIDTH, SCREEN_HEIGHT))
+# pygame.draw.rect(screen, WHITE, rect)
+#
+# # 전체 화면에서 빨간 사각형을 그린다.
+# rect = pygame.Rect((340, 60), (60, 20))
+# pygame.draw.rect(screen, RED, rect)
+#
+# # 전체 화면에서 녹색 사각형을 그린다.
+# rect = pygame.Rect((0, 0), (40, 40))
+# pygame.draw.rect(screen, GREEN, rect)
 
 block_position = [0, 0]  #  좌표값  (y, x) 튜플이어야 함
 last_moved_time = datetime.now()  # 마지막으로 움직인 때

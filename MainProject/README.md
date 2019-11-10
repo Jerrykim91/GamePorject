@@ -1,14 +1,13 @@
 
 ## 속성정의 (클래스 속성) 
 
-**Worker**
+**Worker** 
 - Location
     - Random Location
 - Movement(Direction of movement)
     - Random Movement
 
 **Vehicle**  
-
 - Location
     - where is starting point and ending point ?
     - 
