@@ -15,12 +15,14 @@ x = 0
 y = 0
 #-----
 WINDOW_SIZE = [600, 500]
+# WINDOW_SIZE = [400, 300]
 Win = pygame.display.set_mode(WINDOW_SIZE)
 pygame.display.set_caption("Array Backed")
 clock = pygame.time.Clock()
-path = './data/img.png'
+path = './data/img_B0.png'
 #-----
-data = pd.read_csv('./data/site3.csv')
+data = pd.read_csv('./data/site3.0.csv')
+# data = pd.read_csv('./data/sitemin.csv')
 # img = pygame.image.load( Win, path )
 
 # def useimg(x,y):
@@ -39,7 +41,7 @@ for i in range(data.shape[0]): # 500 = i = row
             Color = RED
             pygame.draw.rect(Win, Color, (int(data.columns[j]), int(data.index[i]), 1, 1))
         elif data.iloc[i, j] == 6:
-            Color = GRAY
+            Color = BLUE
             pygame.draw.rect(Win, Color, (int(data.columns[j]), int(data.index[i]), 1, 1))
         else:
             Color = WHITE
@@ -58,16 +60,16 @@ while not done:
             done = True
 
         ##  키를 통한 방향 값 설정
-    keys = pygame.key.get_pressed()
-    # 키 입력
-    if keys[pygame.K_LEFT] and x > vel:
-        x -= vel
-    if keys[pygame.K_RIGHT]and x < WINDOW_SIZE[0]-width-vel:
-        x += vel
-    if keys[pygame.K_UP]and y > vel:
-        y -= vel
-    if keys[pygame.K_DOWN]and y < WINDOW_SIZE[1]-height-vel:
-        y += vel
+    # keys = pygame.key.get_pressed()
+    # # 키 입력
+    # if keys[pygame.K_LEFT] and x > vel:
+    #     x -= vel
+    # if keys[pygame.K_RIGHT]and x < WINDOW_SIZE[0]-width-vel:
+    #     x += vel
+    # if keys[pygame.K_UP]and y > vel:
+    #     y -= vel
+    # if keys[pygame.K_DOWN]and y < WINDOW_SIZE[1]-height-vel:
+    #     y += vel
     # 캐릭터 그리기
     # Win.fill((0, 0, 0))  # 잔상 없이 게임 생성
     # (win,(R,G,B),(x, y, width, height))
@@ -75,5 +77,5 @@ while not done:
 
     clock.tick(60)
     pygame.display.flip()
-
+    pygame.image.save(Win, path)
 pygame.quit()

@@ -27,3 +27,18 @@ Win = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 # 대기시간
 time.sleep(5)
+
+Run = True
+# 이벤트 생성
+while Run:
+    # pygame.time.delay(50)
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            pygame.quit()
+            # run = False
+            sys.exit() # 종료
+
+
+    pygame.display.flip()
+
+pygame.quit()
