@@ -14,35 +14,45 @@ x = 0
 y = 0
 #-----
 WINDOW_SIZE = [600, 500]
-WINDOW_SIZE = [400, 300]
+# WINDOW_SIZE = [400, 300]
 Win = pygame.display.set_mode(WINDOW_SIZE)
 pygame.display.set_caption("Array Backed")
 clock = pygame.time.Clock()
 #-----
 
-# data = pd.read_csv('./data/site3.csv')
-
-data = pd.read_csv('./data/sitemin.csv')
+data = pd.read_csv('./data/site3.0.csv')
+# data = pd.read_csv('./data/sitemin.csv')
 Win.fill(WHITE)
 
 for i in range(data.shape[0]): # 500 = i = row
     for j in range(data.shape[1]): # 600
         if data.iloc[i, j] == 1:
-            Color = GRAY
+            Color = BLACK
             pygame.draw.rect(Win, Color, (int(data.columns[j]), int(data.index[i]), 1, 1))
-        elif data.iloc[i, j] == 4:
+        elif data.iloc[i, j] == 2:
             Color = GREEN
             pygame.draw.rect(Win, Color, (int(data.columns[j]), int(data.index[i]), 1, 1))
-        elif data.iloc[i, j] == 5:
+        elif data.iloc[i, j] == 8:
             Color = RED
+            pygame.draw.rect(Win, Color, (int(data.columns[j]), int(data.index[i]), 1, 1))
+        elif data.iloc[i, j] == 4:
+            Color = BLUE
+            pygame.draw.rect(Win, Color, (int(data.columns[j]), int(data.index[i]), 1, 1))
+        elif data.iloc[i, j] == 5:
+            Color = GRAY
+            pygame.draw.rect(Win, Color, (int(data.columns[j]), int(data.index[i]), 1, 1))
+        elif data.iloc[i, j] == 6:
+            Color = PURPLE
             pygame.draw.rect(Win, Color, (int(data.columns[j]), int(data.index[i]), 1, 1))
         else:
             Color = WHITE
             pygame.draw.rect(Win, Color, (int(data.columns[j]), int(data.index[i]), 1, 1))
-# unload : 0  , load = 1 , caner = 2 , turn = 3
+
+
+# unload : 0  , load = 1 ,  = 2 ,  = 3
 # home_ in : 4  , home_out : 5 , home point = 9
 # M_in : 6  , M _out : 7
-# check point1 = 8
+# M = 8
 
 done = False
 # -------- 메인 프로그램 루프 -----------

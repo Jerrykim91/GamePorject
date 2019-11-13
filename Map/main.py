@@ -16,7 +16,7 @@ WHITE = 255, 255, 255  # 하얀색: 적 255, 녹 255, 청 255
 data = pd.read_csv('./data/site1.csv')
 # print(data)
 
-WINDOW_SIZE = [630, 630]
+WINDOW_SIZE = [600, 600]
 # 윈도우 사이즈 계산법
 # (칸수 x 블럭사이즈) +(여백(=칸수+1) x MARGIN)
 #-----
@@ -26,7 +26,7 @@ WINDOW_SIZE = [630, 630]
 # print(a)
 # print(b)
 BLOCK_SIZE = 20
-MARGIN = 5
+MARGIN = 1
 WIDTH = 20
 HEIGHT = 20
 vel = 1
@@ -53,24 +53,27 @@ pygame.init()
 def draw_background(screen):
     """ 게임의 배경을 그린다. """
     # 화면 배경 설정
-    screen.fill(BLACK)
+    screen.fill(WHITE)
+    for row in range(30):
+        pygame.draw.line(screen, (64, 64, 64), (row * 20, 0), (row * 20, 630))
+        pygame.draw.line(screen, (64, 64, 64), (0, row * 20), (630, row * 20))
     # Draw the grid
-    for row in range(25): # 칸수
-        for column in range(25):
-            color = WHITE
-            # if grid[row][column] == 1:
-            #     color = RED
-            pygame.draw.rect(screen,
-                             color,
-                             [(MARGIN + WIDTH) * column + MARGIN,
-                              (MARGIN + HEIGHT) * row + MARGIN,
-                              WIDTH,
-                              HEIGHT])
+    # for row in range(25): # 칸수
+    #     for column in range(25):
+    #         color = WHITE
+    #         # if grid[row][column] == 1:
+    #         #     color = RED
+    #         pygame.draw.rect(screen,
+    #                          color,
+    #                          [(WIDTH+MARGIN) * column+ MARGIN,
+    #                           (HEIGHT+MARGIN) * row + MARGIN,
+    #                           WIDTH,
+    #                           HEIGHT])
 
 #
 def draw_block(screen, color, position):
     """ position 위치에 color 블록을 그린다. """
-    block = pygame.Rect(((position[1]) * WIDTH+ MARGIN, (position[0]) * HEIGHT+ MARGIN), (WIDTH, HEIGHT))
+    block = pygame.Rect((position[1] * WIDTH+MARGIN, position[0] * HEIGHT+MARGIN), (WIDTH, HEIGHT))
     # block = pygame.Rect((position[1] * WIDTH+MARGIN , position[0] * HEIGHT+MARGIN ), (WIDTH, HEIGHT))
 
     # 블록 크기 고정 ( BLOCK_SIZE, BLOCK_SIZE )
