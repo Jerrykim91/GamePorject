@@ -5,36 +5,18 @@
 import sys
 import pygame
 from random import randint
-from pygame.locals import QUIT,Rect,K_SPACE, KEYDOWN
-
+from pygame.locals import QUIT, Rect, K_SPACE, KEYDOWN
+from RBG import *
 # 초기화
 pygame.init()
 pygame.key.set_repeat(5,5)
 
 # 변수
 SCREEN_W, SCREEN_H = 800, 600
-# 여러가지 색 // 0-255 ( R, B, G )
 
-import pygame
-import sys
-import random
-from pygame.locals import QUIT
-
-# 초기화
-pygame.init()
 # 변수
-SCREEN_W, SCREEN_H = 400, 300
+SCREEN_W, SCREEN_H = 800, 600
 # x, y = [0, 0]
-
-# 여러가지 색
-# 0-255 ( R, B, G )
-RED = 255, 0, 0        # 적색:   적 255, 녹   0, 청   0
-GREEN = 0, 255, 0      # 녹색:   적   0, 녹 255, 청   0
-BLUE = 0, 0, 255       # 청색:   적   0, 녹   0, 청 255
-PURPLE = 127, 0, 127   # 보라색: 적 127, 녹   0, 청 127
-BLACK = 0, 0, 0        # 검은색: 적   0, 녹   0, 청   0
-GRAY = 127, 127, 127   # 회색:   적 127, 녹 127, 청 127
-WHITE = 255, 255, 255  # 하얀색: 적 255, 녹 255, 청 255
 
 # 창 설정
 SCREEN = pygame.display.set_mode((SCREEN_W, SCREEN_H))
@@ -60,19 +42,9 @@ for xpos in range(walls):
     game_over = False
 
 run = True
+# 루프구간
 while run:
     is_space_down = False
-
-# 타이틀
-pygame.display.set_caption("렌덤 라인 만들기")
-
-# 메인 함수 생성
-def main():
- """ main routine """
-
-run = True
-while run:
-
     EVENTS = pygame.event.get()
     for event in EVENTS:
         if event.type == QUIT:
@@ -85,14 +57,14 @@ while run:
 
     # 내 캐릭터 이동
     if not game_over :
-        score +=  10
+        score += 10
         velocity += -3 if is_space_down else 3
         ship_y += velocity
 
         # 동굴을 스크롤
         edge = holes[-1].copy()
         test = edge.move(0,slope)
-        if  test.top <= 0 or test.bottom >= 600:
+        if test.top <= 0 or test.bottom >= 600:
             slope = randint(1,6) * (-1 if slope > 0 else 1)
             edge.inflate_ip(0,-20)
         edge.move_ip(10,slope)
@@ -109,23 +81,18 @@ while run:
     SCREEN.fill((0, 255, 0))
     for hole in holes:
         pygame.draw.rect(SCREEN,WHITE, hole)
-    SCREEN.blit(ship_img,(0,ship_y))
-    score_img = sysfont.render("score is {}".format(score), True, (0,0,225))
-    SCREEN.blit(score_img,(600,20))
+    SCREEN.blit(ship_img, (0, ship_y))
+    score_img = sysfont.render("score is {}".format(score), True, (0, 0, 225))
+    SCREEN.blit(score_img,(600, 20))
 
     if game_over:
-        SCREEN.blit(bang_img,(0,ship_y-40))
+        SCREEN.blit(bang_img, (0, ship_y-40))
 
-    SCREEN.fill((255, 255, 255))  # 흰색으로 화면을 채운다.
-    pointlist = []
-    for _ in range(10):
-        xpos = random.randint(0, 400)
-        ypos = random.randint(0, 300)
-        pointlist.append((xpos,ypos))
-
-    pygame.draw.lines(SCREEN, BLACK,True,pointlist,5)
     pygame.display.update()
-    FPSCLOCK.tick(3)
+    FPSCLOCK.tick(5)
 
-if __name__=='__main__':
+if __name__ == '__main__':
     main()
+
+
+# 재시작 버튼 만들어야해

@@ -6,7 +6,8 @@ import sys
 import pygame
 from math import floor
 from random import randint
-from pygame.locals import QUIT,MOUSEBUTTONDOWN
+from pygame.locals import QUIT, MOUSEBUTTONDOWN
+from RBG import *
 
 # 변수
 # EMPTY(빈타일) , BOMB(폭탄), OPENED(열린타일)
@@ -19,15 +20,6 @@ BOMB = 1    # 폭탄
 OPENED = 2  # 열린타일
 OPEN_COUNT = 0 # 열린 타일 수
 CHECKED = [[0 for _ in range(WIDTH)] for _ in range(HEIGHT)] # 타일의 상태를 이미 확인 했는지 기록하는 배열
-
-# 여러가지 색 // 0-255 ( R, B, G )
-RED = 255, 0, 0        # 적색:   적 255, 녹   0, 청   0
-GREEN = 0, 255, 0      # 녹색:   적   0, 녹 255, 청   0
-BLUE = 0, 0, 255       # 청색:   적   0, 녹   0, 청 255
-PURPLE = 127, 0, 127   # 보라색: 적 127, 녹   0, 청 127
-BLACK = 0, 0, 0        # 검은색: 적   0, 녹   0, 청   0
-GRAY = 127, 127, 127   # 회색:   적 127, 녹 127, 청 127
-WHITE = 255, 255, 255  # 하얀색: 적 255, 녹 255, 청 255
 
 # 초기화
 pygame.init()
