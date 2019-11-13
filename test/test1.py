@@ -1,85 +1,136 @@
-# test 작업
-
 # import
-import pygame
-import sys
-from pygame.locals import QUIT
-# init => 초기화
+import pygame, sys
+import numpy as np
+import random
+import pandas as pd
+from pygame.locals import QUIT, KEYDOWN
+from RBG import *
+
 pygame.init()
 
-# 변수
-x, y = (10, 10) # 좌표값
-width, height = (10, 20) # 블록 사이즈 인가??
-vel = 10
-SCREEN_WIDTH, SCREEN_HEIGHT = 500, 350  # 창 너비 ,창 높이
-# BLOCK_SIZE    = 10  # 블록 고정 ??
-isJump = False
-jumpCount = 10
+#데이터 불러오기
+data = pd.read_csv('./data/site3.0.csv')
+# print(data)
 
-# 여러가지 색 // 0-255 ( R, B, G )
-RED    = 255, 0, 0       # 적색:   적 255, 녹   0, 청   0
-GREEN  = 0, 255, 0       # 녹색:   적   0, 녹 255, 청   0
-BLUE   = 0, 0, 255       # 청색:   적   0, 녹   0, 청 255
-PURPLE = 127, 0, 127     # 보라색: 적 127, 녹   0, 청 127
-BLACK  = 0, 0, 0         # 검은색: 적   0, 녹   0, 청   0
-GRAY   = 127, 127, 127   # 회색:   적 127, 녹 127, 청 127
-WHITE  = 255, 255, 255   # 하얀색: 적 255, 녹 255, 청 255
+WINDOW_SIZE = (600, 500)
+SCREEN_WIDTH = 600
+SCREEN_HEIGHT = 500
 
-# 윈도우 생성
-Win = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-FPSCLOCK = pygame.time.Clock()
-# 타이틀
-pygame.display.set_caption("Test Project")
+BLOCK_SIZE = 10
+MARGIN = 1
+WIDTH = 10
+HEIGHT = 10
+vel = 1
 
-# 메인 함수 생성
-def main():
- """ main routine """
+img = pygame.image.load('./data/img_B0.png')
+screen = pygame.display.set_mode(WINDOW_SIZE)
+CLOCK = pygame.time.Clock()
+pygame.display.set_caption("Room2")
 
-Run = True
-# 이벤트 생성
-while Run:
-    # pygame.time.delay(50)
-    for event in pygame.event.get():
-        if event.type == QUIT:
-            pygame.quit()
-            # run = False
-            sys.exit() # 종료
+# positions = []
+# for i in range(data.shape[0]):
+#     for j in range(data.shape[1]):
+#         positions = data.iloc[i][j]
+#         if positions == 1:
+#             print("happy")
+#         elif positions == 0:
+#             print("0")
+#         else:
+#
 
-#  키를 통한 방향 값 설정
-    keys = pygame.key.get_pressed()
-# 키 입력
-    if keys[pygame.K_LEFT] and x > vel:
-        x -= vel
-    if keys[pygame.K_RIGHT] and x < SCREEN_WIDTH-width-vel:
-        x += vel
-    if not( isJump ):
-        if keys[pygame.K_UP] and y > vel:
-            y -= vel
-        if keys[pygame.K_DOWN] and y < SCREEN_HEIGHT-height-vel:
-            y += vel
-        if keys[pygame.K_SPACE]:
-            isJump = True
-    else:
-        if jumpCount >= -10:
-            neg = 1
-            if jumpCount < 0:
-                neg = -1
-            y -= (jumpCount ** 2) * 0.5 * neg
-            jumpCount -= 1
+
+for i in range(data.shape[0]):  # 500 = i = row
+    for j in range(data.shape[1]):  # 600
+        # print(data.iloc[i, j])
+        if data.iloc[i, j] == 1:
+            Color = BLACK
+            pygame.draw.rect(screen, Color, (int(data.columns[j]), int(data.index[i]), 1, 1))
+        elif data.iloc[i, j] == 2:
+            Color = GREEN
+            pygame.draw.rect(screen, Color, (int(data.columns[j]), int(data.index[i]), 1, 1))
+        elif data.iloc[i, j] == 3:
+            Color = RED
+            pygame.draw.rect(screen, Color, (int(data.columns[j]), int(data.index[i]), 1, 1))
+        elif data.iloc[i, j] == 4:
+            Color = GREEN
+            pygame.draw.rect(screen, Color, (int(data.columns[j]), int(data.index[i]), 1, 1))
+        elif data.iloc[i, j] == 5:
+            Color = RED
+            pygame.draw.rect(screen, Color, (int(data.columns[j]), int(data.index[i]), 1, 1))
+        # elif data.iloc[i, j] == 6:
+        #     # Color = GREEN
+        #     # pygame.draw.rect(screen, Color, (int(data.columns[j]), int(data.index[i]), 1, 1))
+        # elif data.iloc[i, j] == 7:
+        #     # Color = RED
+        #     # pygame.draw.rect(screen, Color, (int(data.columns[j]), int(data.index[i]), 1, 1))
+        # elif data.iloc[i, j] == 8:
+        #     # Color = RED
+        #     # pygame.draw.rect(screen, Color, (int(data.columns[j]), int(data.index[i]), 1, 1))
         else:
-            isJump = False
-            jumpCount = 10
+            Color = WHITE
+            pygame.draw.rect(screen, Color, (int(data.columns[j]), int(data.index[i]), 1, 1))
 
-    # 캐릭터 그리기
-    Win.fill((255, 255, 255))  # 잔상 없이 게임 생성
-    # (win,(R,G,B),(x, y, width, height))
-    pygame.draw.rect(Win, RED, (x, y, width, height),2)
-    # 화면 갱신
+    # unload : 0  , load = 1 ,  = 2 ,  = 3
+    # home_ in : 4  , home_out : 5 , home point = 9
+    # M_in : 6  , M _out : 7
+    # M = 8
+
+
+# ======= 함수 =======
+def draw_background(screen):
+    """ 게임의 배경을 그린다. """
+    # 화면 배경 설정
+    #screen.fill(WHITE)
+    screen.blit(img, (0, 0))
+    pygame.image.load('./data/img_B0.png')
+    for row in range(60):
+        pygame.draw.line(screen, (64, 64, 64), (row * 10, 0), (row * 10, 600))
+        pygame.draw.line(screen, (64, 64, 64), (0, row * 10), (600, row * 10))
+
+
+def draw_block(screen, color, position):
+    """ position 위치에 color 블록을 그린다. """
+    block = pygame.Rect((position[1] * WIDTH+MARGIN, position[0] * HEIGHT+MARGIN), (WIDTH, HEIGHT))
+    # 블록 크기 고정 ( BLOCK_SIZE, BLOCK_SIZE )
+    pygame.draw.rect(screen, color, block)
+
+# ==== 변수 ======
+block_position = [0,0]
+Run = True
+
+# -------- main loop --------
+while Run:
+    CLOCK.tick(27)
+    EVENTS = pygame.event.get()
+    for event in EVENTS:
+        if event.type == QUIT:
+            Run = False
+
+        if event.type == pygame.KEYDOWN:
+            pos = pygame.key.get_pressed()
+            column = pos[0] // (WIDTH + MARGIN)
+            row = pos[1] // (HEIGHT + MARGIN)
+
+            if event.key == pygame.K_LEFT : #block_position[1]
+                block_position[1] -= vel
+            elif event.key == pygame.K_RIGHT:
+                block_position[1] += vel
+            elif event.key == pygame.K_UP :
+                block_position[0] -= vel #block_position[0]
+            elif event.key == pygame.K_DOWN :
+                block_position[0] += vel
+
+    # 화면을 계속 새로 그린다
+    draw_background(screen)
+    draw_block(screen, RED, block_position)
     pygame.display.flip()
-    FPSCLOCK.tick(10)
 
-if __name__=='__main__':
-    main()
-# 블랙 -> 화이트 화면 색 변경하고 속도 조절
-# win 사이즈 변경 -> 절반으로 대폭 수정
-# 전체적으로 기본 내용을 함수 안에 삽입
+pygame.quit()
+
+
+# DIRECTION_ON_KEY = {
+#     pygame.K_UP : 'north',
+#     pygame.K_DOWN : 'south',
+#     pygame.K_LEFT : 'west',
+#     pygame.K_RIGHT : 'east'
+# }

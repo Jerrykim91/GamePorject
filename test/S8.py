@@ -25,16 +25,6 @@ for i in range(data.shape[0]):
         positions = data.iloc[i][j]
 
 
-def draw_background(screen):
-    """게임의 배경을 그린다."""
-    background = pygame.Rect((0, 0), (SCREEN_WIDTH, SCREEN_HEIGHT))
-    pygame.draw.rect(screen, WHITE, background)
-
-def draw_block(screen, color, position):
-    """position 위치에 color 색깔의 블록을 그린다."""
-    block = pygame.Rect((position[1] * BLOCK_SIZE, position[0] * BLOCK_SIZE),
-                        (BLOCK_SIZE, BLOCK_SIZE))
-    pygame.draw.rect(screen, color, block)
 
 class Snake:
     """ 뱀 클래스 """
