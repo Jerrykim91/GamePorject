@@ -14,7 +14,7 @@ x = 0
 y = 0
 #-----
 WINDOW_SIZE = [600, 500]
-WINDOW_SIZE = [400, 300]
+# WINDOW_SIZE = [400, 300]
 Win = pygame.display.set_mode(WINDOW_SIZE)
 pygame.display.set_caption("Array Backed")
 clock = pygame.time.Clock()

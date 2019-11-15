@@ -58,7 +58,9 @@ class AGV:
         self.speed = spd
 
     # 상황 판단 함수 생성
+    def movePath(self):pass
 
+    def thinkPath(self):pass
 
 
 class  GameSite:
@@ -68,9 +70,10 @@ class  GameSite:
     # 2. 맵그리기
     # 3. 게임 초기 값
     # 멤버변수
+
     gMapData = None  # 맴 데이터
 
-    def __init__(self,path = './data/site3.0.csv'):
+    def __init__(self, path = './data/Load1116.csv'):
         self.game_init()
         self.game_Map(path)
         self.game_initData()
@@ -137,7 +140,7 @@ class  GameSite:
                     self.Run = False
 
             # 배경그리기
-            self.background(self.backgroundImg,self.screen)
+            self.background(self.backgroundImg, self.screen)
 
             # 전체 서피스 갱신
             pygame.display.flip()

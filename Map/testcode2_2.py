@@ -25,8 +25,7 @@ data = pd.read_csv('./data/site3.0.csv')
 # data = pd.read_csv('./data/sitemin.csv')
 # img = pygame.image.load( Win, path )
 
-# def useimg(x,y):
-#     Win.blit(us
+
 Win.fill(WHITE)
 
 for i in range(data.shape[0]): # 500 = i = row
