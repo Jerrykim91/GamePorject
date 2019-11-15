@@ -82,7 +82,7 @@ def draw_background(screen):
     # 화면 배경 설정
     #screen.fill(WHITE)
     screen.blit(img, (0, 0))
-    pygame.image.load('./data/img_B0.png')
+    #pygame.image.load('./data/img_B0.png')
     for row in range(60):
         pygame.draw.line(screen, (64, 64, 64), (row * 10, 0), (row * 10, 600))
         pygame.draw.line(screen, (64, 64, 64), (0, row * 10), (600, row * 10))

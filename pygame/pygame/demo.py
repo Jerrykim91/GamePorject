@@ -3,29 +3,34 @@ import pygame, sys
 import random
 import numpy as np
 import pandas as pd
-from pygame.locals import QUIT,KEYDOWN,Rect
+from pygame.locals import QUIT, KEYDOWN
 from RBG import *
 from hwLib import *
 
 
-# 맵 클래스 생성
-class Map:
+class AVGModel:
     # 맴버변수
-    gMapData = None
+    gMapData = None  # 맴 데이터
 
-    def __init__(self,path='./data/site3.0.csv'):
-        self.agv = Agv()
-        self.reward = Reward()
-        self.game_loadMap(path)
+    # 생성자
+    def __init__(self, path='./data/site3.0.csv'):
         self.game_init()
-        self.game_free()
-        # self.map_data()
+        self.game_loadMap(path)
+        self.game_initGameData()
+
+        self.game_run()
 
     # step1 게임 초기화
     def game_init(self):
         log('step1 게임 초기화 OK')
         pygame.init()
 
+    # step9 게임 종료
+    def game_free(self):
+        log('step9 게임 종료 OK')
+        pygame.quit()
+        import sys
+        sys.exit()
 
     # step2 맵 데이터 로드
     def game_loadMap(self, path):
@@ -39,8 +44,8 @@ class Map:
         finally:
             pass
 
-
-    def draw(self):
+    # step2-1 게임 관련 데이터 초기화
+    def game_initGameData(self):
         # 수치값 및 이미지 경로는 향후 전부 바깥으로 뺀다
         self.WIDTH = WIDTH
         self.HEIGHT = HEIGHT
@@ -57,9 +62,19 @@ class Map:
         # 게임 구동 플레그값
         self.Run = True
 
-    def process_turn(self):pass
+    # step3 윈도우 생성및 초기화
+    def game_initWindow(self):
+        pass
 
-    def put_new_reward(self):pass
+    # step4 윈도우에 지형지물 배치
+    def game_drawWindow(self):
+        pass
+
+    # step5 AGV 생성 및 드로잉
+    def game_initAGV(self):
+        pass
+
+    # step6
     def game_run(self):
         while self.Run:
             self.CLOCK.tick(27)
@@ -68,55 +83,21 @@ class Map:
                 if event.type == QUIT:
                     Run = False
 
+    def game_drawAGV(self):
+        pass
 
+    # step7 AGV에 딥러닝을 적용한 이동 시뮬레이션 처리, 로그기록(고민)
+    def game_aiCoreAGV(self):
+        pass
 
-    # step9 게임 종료
-    def game_free(self):
-        log('step9 게임 종료 OK')
-        pygame.quit()
-        import sys
-        sys.exit()
-#
+    # step8 조작 컨트롤러(일시정지, 제개, 등등..) 생략가능
+    def game_controllerAGV(self):
+        pass
 
-# Agv 클래스
-class Agv:pass
-    # # 맴버변수
-    # color = GRAY  # Agv의 색
-    #
-    # # 생성자
-    # def __init__(self):
-    #     self.map = Map()
-    #     # self.positions = [(길 주소[0], 길 주소[1])]  #  Agv 위치(길위)
-    #    # self.direction = ''  # Agv 의 방향  => 시계방향
-    #
-    #
-    # #Agv 화면에 그린다.
-    # def draw(self, screen): pass
-    #
-    # def move(self):pass
-    #
-    #
-    # # 게임 오버 판정
-    # def is_game_over(slef) :pass
-    #     #agv 가 충돌하면 에러
-
-
-
-
-# 보상 클래스
-class Reward(object):pass
-    # def __init__(self):pass
-    #
-    #
-    # def draw(self, screen):pass
-
-
-#
-#
 
 if __name__ == '__main__':
-    works = map()
-    if works:
+    ai = AVGModel()
+    if ai:
         # step2 맵 데이터 로드
         # step3 윈도우 생성및 초기화
         # step4 윈도우에 지형지물 배치
